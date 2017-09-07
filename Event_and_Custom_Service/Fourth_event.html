@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body ng-app="myModule">
+<div ng-controller="myController">
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+            <th>Like/Dislike</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="technology in technologies">
+            <td>{{technology.name}}</td>
+            <td>{{technology.likes}}</td>
+            <td>{{technology.dislikes}}</td>
+            <td><input type="button" value="Like" ng-click="incrementLikes(technology)">
+                <input type="button" value="Dislike" ng-click="incrementDisLikes(technology)">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<script>
+    var app = angular
+        .module("myModule",[])
+        .controller("myController",function($scope){
+            var technologies = [
+                {name:"C#", likes:0,dislikes:0},
+                {name:"Java", likes:0,dislikes:0},
+                {name:"Oracle", likes:0,dislikes:0},
+                {name:"AngularJS", likes:0,dislikes:0}
+            ];
+            $scope.technologies = technologies;
+            $scope.incrementLikes = function(technology){
+                technology.likes++;
+            }
+            $scope.incrementDisLikes = function(technology){
+                technology.dislikes++;
+            }});
+
+</script>
+</body>
+</html>
